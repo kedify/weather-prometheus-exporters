@@ -1,3 +1,4 @@
+# docker buildx build . -f Dockerfile --push --platform linux/amd64,linux/arm64 -t ghcr.io/kedify/weather-prometheus-exporters
 FROM --platform=$TARGETARCH golang:1.17 AS builder
 WORKDIR /
 ENV \
