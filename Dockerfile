@@ -1,5 +1,5 @@
-FROM golang:1.17 AS builder
-WORKDIR /build
+FROM --platform=$TARGETARCH golang:1.17 AS builder
+WORKDIR /
 ENV \
   CGO_ENABLED=0 \
   GOOS=linux \
@@ -9,8 +9,10 @@ RUN go mod download
 COPY . .
 RUN go build ./main.go
 
-FROM alpine
+FROM --platform=$TARGETARCH alpine
 WORKDIR /weather-prometheus-exporters
-COPY --from=builder /build/main .
+COPY --from=builder /main .
 EXPOSE 80
 ENTRYPOINT ["/weather-prometheus-exporters/main"]
+
+
