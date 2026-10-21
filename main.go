@@ -83,7 +83,9 @@ func run(log *log.Logger) error {
 		return fmt.Errorf("serving HTTP: %w", err)
 	}
 
-	<-shutdownDone
+	if err := <-shutdownDone; err != nil {
+		return fmt.Errorf("shutting down HTTP server: %w", err)
+	}
 
 	return nil
 }
