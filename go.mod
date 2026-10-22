@@ -1,6 +1,6 @@
 module github.com/ulexxander/weather-prometheus-exporters
 
-go 1.26.10
+go 1.27.3
 
 require (
 	github.com/joho/godotenv v1.4.0
